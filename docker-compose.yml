@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  rtsp-relay:
+    container_name: rtsp-relay
+    build: .
+    ports:
+      - "8700:8700"
+    restart: unless-stopped
+    environment:
+      - TZ=UTC
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true 

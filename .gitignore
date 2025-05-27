@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtualenv
+venv/
+.env/
+
+# Docker
+*.db
+*.sqlite3
+db.sqlite3
+*.log
+
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Ignore temp files
+*.swp
+*.swo
+
+# Ignore secrets
+streams.yaml 

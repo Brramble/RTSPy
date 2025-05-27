@@ -1,0 +1,17 @@
+# Example RTSP stream configurations
+# Copy this file to streams.yaml and modify with your actual stream URLs
+
+# Front door camera
+front_door:
+  rtsp://admin:password@192.168.1.100:554/stream1
+
+# Backyard camera
+backyard:
+  rtsp://admin:password@192.168.1.101:554/stream1
+
+# Garage camera
+garage:
+  rtsp://admin:password@192.168.1.102:554/stream1
+
+# Note: Replace the example URLs with your actual RTSP stream URLs
+# Format: rtsp://username:password@ip_address:port/stream_path 
