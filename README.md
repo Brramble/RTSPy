@@ -64,7 +64,7 @@ STREAM_<NAME>=rtsp://username:password@camera-ip:port/stream-path
 For example:
 ```bash
 STREAM_FRONT_DOOR=rtsp://admin:password@192.168.1.100:554/stream1
-STREAM_BACKYARD=rtsp://admin:password@192.168.1.101:554/stream1
+STREAM_GARAGE=rtsp://admin:password@192.168.1.101:554/stream1
 ```
 
 ### Docker Compose Configuration
@@ -76,7 +76,7 @@ services:
   rtsp-relay:
     environment:
       - STREAM_FRONT_DOOR=rtsp://admin:password@192.168.1.100:554/stream1
-      - STREAM_BACKYARD=rtsp://admin:password@192.168.1.101:554/stream1
+      - STREAM_GARAGE=rtsp://admin:password@192.168.1.101:554/stream1
 ```
 
 ## Usage
@@ -95,8 +95,7 @@ services:
 
 3. Access streams in your browser:
    - Front door: `http://localhost:8700/front_door`
-   - Backyard: `http://localhost:8700/backyard`
-   - Garage: `http://localhost:8700/garage`
+   - GARAGE: `http://localhost:8700/GARAGE`
 
 ### Docker Usage
 
