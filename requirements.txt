@@ -1,5 +1,4 @@
 flask==2.0.1
 werkzeug==2.0.3
-PyYAML==6.0
 ffmpeg-python==0.2.0
 simple-websocket==0.10.1 
