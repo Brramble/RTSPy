@@ -5,7 +5,7 @@ A lightweight RTSP stream relay server built with Python and Flask. This applica
 ## Features
 
 - Convert RTSP streams to MJPEG for browser compatibility
-- Simple YAML-based configuration
+- Environment variable based configuration
 - Docker support
 - Full-screen video display
 - Multiple stream support
@@ -53,27 +53,47 @@ A lightweight RTSP stream relay server built with Python and Flask. This applica
 
 ## Configuration
 
-1. Copy the example configuration file:
-   ```bash
-   cp streams.yaml.example streams.yaml
-   ```
+### Environment Variables
 
-2. Edit `streams.yaml` with your RTSP stream URLs:
-   ```yaml
-   front_door:
-     rtsp://username:password@camera-ip:554/stream1
-   ```
+The application uses environment variables to configure RTSP streams. Each stream should be configured using the format:
+
+```
+STREAM_<NAME>=rtsp://username:password@camera-ip:port/stream-path
+```
+
+For example:
+```bash
+STREAM_FRONT_DOOR=rtsp://admin:password@192.168.1.100:554/stream1
+STREAM_BACKYARD=rtsp://admin:password@192.168.1.101:554/stream1
+```
+
+### Docker Compose Configuration
+
+You can configure streams in your `docker-compose.yml`:
+
+```yaml
+services:
+  rtsp-relay:
+    environment:
+      - STREAM_FRONT_DOOR=rtsp://admin:password@192.168.1.100:554/stream1
+      - STREAM_BACKYARD=rtsp://admin:password@192.168.1.101:554/stream1
+```
 
 ## Usage
 
 ### Local Usage
 
-1. Start the server:
+1. Set environment variables for your streams:
+   ```bash
+   export STREAM_FRONT_DOOR=rtsp://admin:password@192.168.1.100:554/stream1
+   ```
+
+2. Start the server:
    ```bash
    python app.py
    ```
 
-2. Access streams in your browser:
+3. Access streams in your browser:
    - Front door: `http://localhost:8700/front_door`
    - Backyard: `http://localhost:8700/backyard`
    - Garage: `http://localhost:8700/garage`
@@ -82,15 +102,11 @@ A lightweight RTSP stream relay server built with Python and Flask. This applica
 
 The server will be available at `http://localhost:8700` after starting with Docker Compose.
 
-## Environment Variables
-
-- `STREAMS_CONFIG`: Path to the streams configuration file (default: `streams.yaml`)
-
 ## Security Considerations
 
-- The `streams.yaml` file contains sensitive information and should not be committed to version control
-- Consider using environment variables for stream credentials in production
+- Store sensitive credentials in environment variables or Docker secrets
 - The application runs on port 8700 by default - ensure this port is properly secured
+- Consider using Docker secrets for production deployments
 
 ## Contributing
 

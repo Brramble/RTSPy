@@ -9,6 +9,10 @@ services:
     restart: unless-stopped
     environment:
       - TZ=UTC
+      # Example stream configurations
+      - STREAM_FRONT_DOOR=rtsp://admin:password@192.168.1.100:554/stream1
+      - STREAM_BACKYARD=rtsp://admin:password@192.168.1.101:554/stream1
+      - STREAM_GARAGE=rtsp://admin:password@192.168.1.102:554/stream1
     networks:
       - proxy
 

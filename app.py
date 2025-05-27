@@ -1,14 +1,15 @@
 from flask import Flask, render_template, Response, abort
 import subprocess
-import yaml
 import os
 
 app = Flask(__name__)
 
-# Load streams from YAML config
-CONFIG_PATH = os.environ.get('STREAMS_CONFIG', 'streams.yaml')
-with open(CONFIG_PATH, 'r') as f:
-    STREAMS = yaml.safe_load(f)
+# Load streams from environment variables
+STREAMS = {}
+for key, value in os.environ.items():
+    if key.startswith('STREAM_'):
+        stream_name = key[7:].lower()  # Remove 'STREAM_' prefix and convert to lowercase
+        STREAMS[stream_name] = value
 
 def generate_frames(rtsp_url):
     command = [
